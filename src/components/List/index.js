@@ -1,2 +1,2 @@
-import List from '.';
+import List from './List';
 export default List;

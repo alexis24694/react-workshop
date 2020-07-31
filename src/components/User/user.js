@@ -1,56 +1,56 @@
 import React from 'react';
-import './user.css';
+import './User.css';
 
 function User() {
     return (
-        <div class="container">
-            <div class="py-5 text-center">
+        <div className="container">
+            <div className="py-5 text-center">
                 <h2>Registro de Usuarios</h2>
             </div>
-            <div class="col-md-8 order-md-1">
-                <form class="needs-validation" novalidate>
-                    <div class="mb-3">
-                        <label for="username">Nombre de usuario</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@</span>
+            <div className="col-md-8 order-md-1">
+                <form className="needs-validation" noValidate>
+                    <div className="mb-3">
+                        <label htmlFor="username">Nombre de usuario</label>
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">@</span>
                             </div>
-                            <input type="text" class="form-control" id="username" placeholder="Usuario" required/>
-                            <div class="invalid-feedback">
+                            <input type="text" className="form-control" id="username" placeholder="Usuario" required/>
+                            <div className="invalid-feedback">
                                 Nombre de usuario es requerido.
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="firstName">Nombres</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required/>
-                            <div class="invalid-feedback">
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="firstName">Nombres</label>
+                            <input type="text" className="form-control" id="firstName" placeholder="" required/>
+                            <div className="invalid-feedback">
                             Nombre es requerido.
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="lastName">Apellidos</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required/>
-                            <div class="invalid-feedback">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="lastName">Apellidos</label>
+                            <input type="text" className="form-control" id="lastName" placeholder="" required/>
+                            <div className="invalid-feedback">
                             Apellido es requerido.
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="email">Email <span class="text-muted">(Opcional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com"/>
-                        <div class="invalid-feedback">
+                    <div className="mb-3">
+                        <label htmlFor="email">Email <span className="text-muted">(Opcional)</span></label>
+                        <input type="email" className="form-control" id="email" placeholder="you@example.com"/>
+                        <div className="invalid-feedback">
                             Por favor ingrese un email válido.
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-6">
-                            <label for="country">País</label>
-                            <select class="custom-select d-block w-100" id="country" required>
+                    <div className="row">
+                        <div className="col-md-6 mb-6">
+                            <label htmlFor="country">País</label>
+                            <select className="custom-select d-block w-100" id="country" required>
                                 <option value="">Seleccione...</option>
                                 <option>Perú</option>
                                 <option>Argentina</option>
@@ -58,24 +58,24 @@ function User() {
                                 <option>Mexico</option>
                                 <option>Estados Unidos</option>
                             </select>
-                            <div class="invalid-feedback">
+                            <div className="invalid-feedback">
                                 Please select a valid country.
                             </div>
                         </div>
-                        <div class="col-md-6 mb-6">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required/>
-                            <div class="invalid-feedback">
+                        <div className="col-md-6 mb-6">
+                            <label htmlFor="zip">Zip</label>
+                            <input type="text" className="form-control" id="zip" placeholder="" required/>
+                            <div className="invalid-feedback">
                                 Zip code es requerido.
                             </div>
                         </div>
                     </div>
-        
-                    <hr class="mb-4"/>
 
-                    <hr class="mb-4"/>
-                    <button class="btn btn-primary" type="submit">Grabar</button>
-                    <button class="btn btn-secondary">Cancelar</button>
+                    <hr className="mb-4"/>
+
+                    <hr className="mb-4"/>
+                    <button className="btn btn-primary" type="submit">Grabar</button>
+                    <button className="btn btn-secondary">Cancelar</button>
                 </form>
             </div>
         </div>

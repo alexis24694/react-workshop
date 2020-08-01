@@ -18,8 +18,20 @@ const deleteUser = (id) => {
         });
 };
 
+const createUser = (payload) => {
+    let endpoint = `http://localhost:3000/users/`;
+    return fetch(endpoint, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload),
+        });
+};
+
 export {
     getUserById,
     searchUsers,
     deleteUser,
+    createUser,
 };

@@ -8,11 +8,11 @@ function ListGrid(props) {
         <table className="table table-striped table-sm table-hover">
             <thead>
                 <tr>
-                    <th>User Name</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Telephone</th>
-                    <th>Email</th>
+                    <th>Nombre Usuario</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
                     <th></th>
                 </tr>
             </thead>

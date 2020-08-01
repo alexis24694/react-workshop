@@ -25,7 +25,6 @@ function List() {
       let yes = window.confirm("Seguro de eliminar el Usuario?");
       if (yes) {
         deleteUser(userId).then(response => {
-          console.log(response.ok);
           if (response.ok) {
             doSearchUsers();
           }

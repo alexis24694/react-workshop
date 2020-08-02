@@ -29,9 +29,21 @@ const createUser = (payload) => {
         });
 };
 
+const updateUser = (payload) => {
+    let endpoint = `http://localhost:3000/users/${payload.id}`;
+    return fetch(endpoint, {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload),
+        });
+};
+
 export {
     getUserById,
     searchUsers,
     deleteUser,
     createUser,
+    updateUser,
 };

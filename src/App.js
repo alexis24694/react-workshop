@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import Nav from './components/nav/Nav';
-import User from './components/user/User';
+import UserCreate from './components/user/UserCreate';
+import UserUpdate from './components/user/UserUpdate';
 import List from './components/list/List';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -11,8 +12,15 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-            <Route path="/user" exact component={User} />
-            <Route path="/search" component={List} />
+            <Route path="/user-create" match >
+              <UserCreate />
+            </Route>
+            <Route path="/search">
+              <List />
+            </Route>
+            <Route path="/user-update/:id" match >
+              <UserUpdate />
+            </Route>
           </Switch>
       </div>
     </Router>

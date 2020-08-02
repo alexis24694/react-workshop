@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './List.css';
 
 function ListGridRow(props) {
@@ -14,6 +15,11 @@ function ListGridRow(props) {
           <td>{props.user.lastName}</td>
           <td>{props.user.telephone}</td>
           <td>{props.user.email}</td>
+          <td>
+            <span style={{marginLeft: "8px"}}>
+                <Link to={`/user-update/${props.user.id}`}>Editar</Link>
+            </span>
+          </td>
           <td>
             <span title="Eliminar">
               <button type="button" className="close" aria-label="Close" onClick={onDeleteCLick} >

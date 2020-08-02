@@ -1,47 +1,56 @@
-import React, { useState } from 'react';
-import './User.css';
-import { createUser } from '../../services/UserService';
+import React, { useState, useEffect } from 'react';
 
-function User() {
+const UserForm = (props) => {
 
     const [userName, setUserName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [country, setCountry]= useState("");
-    const [zip, setZip]= useState("");
+    const [zipCode, setZipCode]= useState("");
+
+    useEffect(()=>{
+        setUserName(props.user.userName);
+        setFirstName(props.user.firstName);
+        setLastName(props.user.lastName);
+        setEmail(props.user.email);
+        setCountry(props.user.country);
+        setZipCode(props.user.zipCode);
+
+        document.getElementById("userName").value = props.user.userName;
+        document.getElementById("firstName").value = props.user.firstName;
+        document.getElementById("lastName").value = props.user.lastName;
+        document.getElementById("email").value = props.user.email;
+        document.getElementById("country").value = props.user.country;
+        document.getElementById("zipCode").value = props.user.zipCode;
+    }, [props.user]);
+
 
     const handleUserName = (event) => setUserName(event.target.value);
     const handleFirstName = (event) => setFirstName(event.target.value);
     const handleLastName = (event) => setLastName(event.target.value);
     const handleEmail = (event) => setEmail(event.target.value);
     const handleCountry = (event) => setCountry(event.target.value);
-    const handleZip = (event) => setZip(event.target.value);
+    const handleZipCode = (event) => setZipCode(event.target.value);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         if (validFields()){
-            const payload = {
+            const userModel = {
+                id: props.user.id,
                 userName: userName,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 country: country,
-                zipCode: zip,
-                telephone: "",
-                age: "",
-                adress: ""
-            };
-            createUser(payload).then(
-                response => {
-                    if (response.ok) {
-                        alert("Usuario se registro exitosamente.");
-                    }
-                });
+                zipCode: zipCode,
+                telephone: props.user.telephone
+            }
+            props.submitCallback(userModel);
         }
         else {
-            alert("Complete la informacion requerida");
+            alert("Complete la información requerida");
         }
     }
 
@@ -50,7 +59,7 @@ function User() {
             firstName !== "" &&
             lastName !== "" &&
             country !== "" &&
-            zip !== "");
+            zipCode !== "");
     }
 
     return (
@@ -61,17 +70,17 @@ function User() {
             <div className="col-md-8 order-md-1">
                 <form className="needs-validation" noValidate onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="username">Nombre de usuario</label>
+                        <label htmlFor="userName">Nombre de usuario</label>
                         <div className="input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">@</span>
                             </div>
                             <input type="text"
                                 className="form-control"
-                                id="username"
+                                id="userName"
                                 placeholder="Usuario"
                                 onChange={handleUserName}
-                                required/>
+                                required />
                             <div className="invalid-feedback">
                                 Nombre de usuario es requerido.
                             </div>
@@ -120,25 +129,28 @@ function User() {
                     <div className="row">
                         <div className="col-md-6 mb-6">
                             <label htmlFor="country">País</label>
-                            <select className="custom-select d-block w-100" id="country" onChange={handleCountry} required>
-                                <option value="">Seleccione...</option>
-                                <option>Perú</option>
-                                <option>Argentina</option>
-                                <option>Chile</option>
-                                <option>Mexico</option>
-                                <option>Estados Unidos</option>
+                            <select className="custom-select d-block w-100"
+                                id="country"
+                                onChange={handleCountry}
+                                required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Perú">Perú</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Estados Unidos">Estados Unidos</option>
                             </select>
                             <div className="invalid-feedback">
                                 Please select a valid country.
                             </div>
                         </div>
                         <div className="col-md-6 mb-6">
-                            <label htmlFor="zip">Zip</label>
+                            <label htmlFor="zipCode">Zip</label>
                             <input type="text"
                                 className="form-control"
-                                id="zip"
+                                id="zipCode"
                                 placeholder=""
-                                onChange={handleZip}
+                                onChange={handleZipCode}
                                 required/>
                             <div className="invalid-feedback">
                                 Zip code es requerido.
@@ -156,4 +168,4 @@ function User() {
     );
 }
 
-export default User;
+export default UserForm;

@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import ListGrid from './ListGrid';
-import './List.css';
+import './list.css';
+import { connect } from 'react-redux';
+import { findUsers, removeUser } from '../../redux/actions/userActions';
 
-import { searchUsers, deleteUser } from '../../services/UserService';
+// import { searchUsers, deleteUser } from '../../services/UserService';
 
-function List() {
-    const [users, setUsers] = useState([]);
+const List = (props) => {
+    const { users, findUsers: search, removeUser: deleteUser } = props;
+    // const [results, setResults] = useState([]);
     const [text, setText] = useState("");
 
     const onChangeCriteria = (e) => {
-      setText(e.target.value);
+      	setText(e.target.value);
     }
 
     const handleSearch = (event) => {
-      event.preventDefault();
-      doSearchUsers();
+		event.preventDefault();
+		doSearchUsers();
     }
 
     const doSearchUsers = () => {
-      searchUsers(text).then(data => setUsers(data));
+		search(text);
     }
 
     const handleDeleteCallback = (userId) => {
       let yes = window.confirm("Seguro de eliminar el Usuario?");
       if (yes) {
-        deleteUser(userId).then(response => {
-          if (response.ok) {
-            doSearchUsers();
-          }
-        });
+        deleteUser(userId);
       }
     }
 
@@ -52,4 +51,8 @@ function List() {
     );
 }
 
-export default List;
+const mapStateToProps = state => ({
+  users: state.UserReducers.users
+})
+
+export default connect(mapStateToProps, { findUsers, removeUser })(List);

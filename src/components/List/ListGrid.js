@@ -1,5 +1,5 @@
 import React from 'react';
-import './List.css';
+import './list.css';
 import ListGridRow from './ListGridRow';
 
 function ListGrid(props) {

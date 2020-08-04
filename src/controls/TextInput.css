@@ -1,0 +1,20 @@
+.text-input {
+	padding: 0.8rem 0;
+    position: relative;
+}
+.text-input--label {
+    color: var(--text-darker);
+    display: block;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    position: relative;
+    min-height: 1.1875rem;
+}
+.text-input--label span {
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+}

@@ -49,7 +49,7 @@ const List = (props) => {
             <form className="form-inline mt-2 mt-md-0">
               <input className="form-control mr-sm-2 col-10" type="text" placeholder="Buscar" aria-label="Buscar" onChange={onChangeCriteria}/>
               <button className="btn btn-outline-secondary my-2 my-sm-0 ml-1" type="submit" onClick={handleSearch}>Buscar</button>
-              <button className="btn btn-outline-secondary my-2 my-sm-0 ml-1" type="submit" onClick={handleSearch}><Link to='/user-create'>Crear</Link></button>
+              <Link to='/user-create'><button className="btn btn-outline-primary my-2 my-sm-0 ml-1">Crear</button></Link>
             </form>
           </div>
 

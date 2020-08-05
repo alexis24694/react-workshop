@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserForm from './UserForm';
 import { useParams } from 'react-router-dom';
-import { getUser, editUser, cleanReponse } from '../../redux/actions/userActions';
+import { getUser, editUser, cleanReponse, cleanUser } from '../../redux/actions/userActions';
 
 const UserUpdate = (props) => {
 
-    const { user, response, getUser: getUserById, editUser: updateUser, cleanReponse: erase } = props
+    const { user, response, getUser: getUserById, editUser: updateUser, cleanReponse: erase, cleanUser: cancel } = props
     const params = useParams();
     const history = useHistory();
 
@@ -33,7 +33,7 @@ const UserUpdate = (props) => {
 
     if (user.userName)
         return (
-            <UserForm currentUser={user} submitCallback={handleSubmitCallback} nameForm="Editar Usuario"/>
+            <UserForm currentUser={user} submitCallback={handleSubmitCallback} cancelCallback={cancel} nameForm="Editar Usuario"/>
         );
     return null;
 }
@@ -43,4 +43,4 @@ const mapStateToProps = state => ({
     response: state.UserReducers.userResponse
 })
 
-export default connect(mapStateToProps, { getUser, editUser, cleanReponse })(UserUpdate);
+export default connect(mapStateToProps, { getUser, editUser, cleanReponse, cleanUser })(UserUpdate);

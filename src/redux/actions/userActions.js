@@ -65,3 +65,9 @@ export const cleanReponse = () => {
         dispatch(internalResponse({}));
     }
 }
+
+export const cleanUser = () => {
+    return (dispatch) => {
+        dispatch(internalFetch({}));
+    }
+}

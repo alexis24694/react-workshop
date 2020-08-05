@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CustomInput from '../../controls/CustomInput/CustomInput'
 
 const UserForm = (props) => {
-    const { currentUser, nameForm } = props;
+    const { currentUser, nameForm, cancelCallback } = props;
     const [user, setUser] = useState(currentUser);
     const history = useHistory();
     const handleUserName = (event) => {
@@ -78,6 +78,7 @@ const UserForm = (props) => {
 
     const cancelAction = (event) => {
         event.preventDefault();
+        cancelCallback();
         history.goBack();
     }
 
@@ -97,8 +98,8 @@ const UserForm = (props) => {
             <div className="col-md-8 order-md-1">
                 <form className="needs-validation" noValidate onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        {/* <CustomInput id="userName" label="Nombre de usuario" placeholder="Usuario" onChange={handleUserName} show_prepend="true"/> */}
-                        <label htmlFor="userName">Nombre de usuario</label>
+                        <CustomInput id="userName" label="Nombre de usuario" defaultValue={currentUser.userName} placeholder="Usuario" onChange={handleUserName} show_prepend="true"/>
+                        {/* <label htmlFor="userName">Nombre de usuario</label>
                         <div className="input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">@</span>
@@ -113,7 +114,7 @@ const UserForm = (props) => {
                             <div className="invalid-feedback">
                                 Nombre de usuario es requerido.
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="row">

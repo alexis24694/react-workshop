@@ -13,6 +13,7 @@ function ListGrid(props) {
                     <th>Apellidos</th>
                     <th>Correo</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

@@ -16,14 +16,12 @@ function ListGridRow(props) {
           <td>{props.user.email}</td>
           <td>
             <span style={{marginLeft: "8px"}}>
-                <Link to={`/user-update/${props.user.id}`}>Editar</Link>
+                <button className="btn btn-link btn-sm"><Link to={`/user-update/${props.user.id}`}>Editar</Link></button>
             </span>
           </td>
           <td>
             <span title="Eliminar">
-              <button type="button" className="close" aria-label="Close" onClick={onDeleteCLick} >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button className="btn btn-link btn-sm" onClick={onDeleteCLick} style={{cursor: 'pointer'}}>Delete</button>
             </span>
           </td>
         </tr>

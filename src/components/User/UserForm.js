@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import CustomInput from '../../controls/CustomInput/CustomInput'
 
 const UserForm = (props) => {
     const { currentUser, nameForm } = props;
@@ -96,6 +97,7 @@ const UserForm = (props) => {
             <div className="col-md-8 order-md-1">
                 <form className="needs-validation" noValidate onSubmit={handleSubmit}>
                     <div className="mb-3">
+                        {/* <CustomInput id="userName" label="Nombre de usuario" placeholder="Usuario" onChange={handleUserName} show_prepend="true"/> */}
                         <label htmlFor="userName">Nombre de usuario</label>
                         <div className="input-group">
                             <div className="input-group-prepend">

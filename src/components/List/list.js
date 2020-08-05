@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ListGrid from './ListGrid';
 import './list.css';
 import { connect } from 'react-redux';
-import { findUsers, removeUser } from '../../redux/actions/userActions';
+import { Link } from 'react-router-dom';
+import { findUsers, removeUser, cleanReponse } from '../../redux/actions/userActions';
 
 // import { searchUsers, deleteUser } from '../../services/UserService';
 
 const List = (props) => {
-    const { users, findUsers: search, removeUser: deleteUser } = props;
-    // const [results, setResults] = useState([]);
+    const { users, response, findUsers: search, removeUser: deleteUser, cleanReponse: erase } = props;
     const [text, setText] = useState("");
+	useEffect(() => {
+		if (response) {
+			if (response.ok) {
+				erase();
+				doSearchUsers();
+			}
+		}
+	})
 
     const onChangeCriteria = (e) => {
       	setText(e.target.value);
@@ -18,8 +26,8 @@ const List = (props) => {
     const handleSearch = (event) => {
 		event.preventDefault();
 		doSearchUsers();
-    }
-
+	}
+	
     const doSearchUsers = () => {
 		search(text);
     }
@@ -41,6 +49,7 @@ const List = (props) => {
             <form className="form-inline mt-2 mt-md-0">
               <input className="form-control mr-sm-2 col-10" type="text" placeholder="Buscar" aria-label="Buscar" onChange={onChangeCriteria}/>
               <button className="btn btn-outline-secondary my-2 my-sm-0 ml-1" type="submit" onClick={handleSearch}>Buscar</button>
+              <button className="btn btn-outline-secondary my-2 my-sm-0 ml-1" type="submit" onClick={handleSearch}><Link to='/user-create'>Crear</Link></button>
             </form>
           </div>
 
@@ -52,7 +61,8 @@ const List = (props) => {
 }
 
 const mapStateToProps = state => ({
-  users: state.UserReducers.users
+  users: state.UserReducers.users,
+  response: state.UserReducers.userResponse
 })
 
-export default connect(mapStateToProps, { findUsers, removeUser })(List);
+export default connect(mapStateToProps, { findUsers, removeUser, cleanReponse })(List);

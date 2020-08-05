@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserForm from './UserForm'
-import { createUser } from '../../services/UserService';
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom';
+import { addUser, cleanReponse } from '../../redux/actions/userActions';
 
-function UserCreate(){
-
+const UserCreate = (props) => {
+    const { response, addUser: createUser, cleanReponse: erase } = props;
+    const history = useHistory();
+    useEffect(() => {
+        if (response) {
+            if (response.ok) {
+                alert("Usuario se registro exitosamente.");
+                erase();
+                history.goBack();
+            }
+        }
+    })
     const handleSubmitCallback = (userModel) => {
-
-        createUser(userModel).then(
-            response => {
-                if (response.ok) {
-                    alert("Usuario se registro exitosamente.");
-                }
-            });
+        createUser(userModel);
     }
 
     const user = {
@@ -20,13 +26,17 @@ function UserCreate(){
         lastName: "",
         email: "",
         country: "",
-        zipCode: ""
+        zipCode: "",
+        telephone: ""
     };
 
     return (
-        <UserForm user={user} submitCallback={handleSubmitCallback} />
+        <UserForm currentUser={user} submitCallback={handleSubmitCallback} nameForm="Registrar Usuario"/>
     );
-
 }
 
-export default UserCreate;
+const mapStateToProps = state => ({
+    response: state.UserReducers.userResponse
+});
+
+export default connect(mapStateToProps, { addUser, cleanReponse })(UserCreate);

@@ -12,12 +12,12 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-            <Route path="/user-create" match >
-              <UserCreate />
-            </Route>
             <Route path="/search">
               <List />
             </Route>
+            <Route path="/user-create" match >
+                <UserCreate />
+              </Route>
             <Route path="/user-update/:id" match >
               <UserUpdate />
             </Route>

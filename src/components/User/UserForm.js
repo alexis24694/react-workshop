@@ -1,51 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const UserForm = (props) => {
-
-    const [userName, setUserName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [country, setCountry]= useState("");
-    const [zipCode, setZipCode]= useState("");
-
-    useEffect(()=>{
-        setUserName(props.user.userName);
-        setFirstName(props.user.firstName);
-        setLastName(props.user.lastName);
-        setEmail(props.user.email);
-        setCountry(props.user.country);
-        setZipCode(props.user.zipCode);
-
-        document.getElementById("userName").value = props.user.userName;
-        document.getElementById("firstName").value = props.user.firstName;
-        document.getElementById("lastName").value = props.user.lastName;
-        document.getElementById("email").value = props.user.email;
-        document.getElementById("country").value = props.user.country;
-        document.getElementById("zipCode").value = props.user.zipCode;
-    }, [props.user]);
-
-
-    const handleUserName = (event) => setUserName(event.target.value);
-    const handleFirstName = (event) => setFirstName(event.target.value);
-    const handleLastName = (event) => setLastName(event.target.value);
-    const handleEmail = (event) => setEmail(event.target.value);
-    const handleCountry = (event) => setCountry(event.target.value);
-    const handleZipCode = (event) => setZipCode(event.target.value);
+    const { currentUser, nameForm } = props;
+    const [user, setUser] = useState(currentUser);
+    const history = useHistory();
+    const handleUserName = (event) => {
+        if (event.target.value) {
+            user.userName = event.target.value;
+        } else {
+            user.userName = '';
+        }
+        setUser(user);
+    }
+    const handleFirstName = (event) => {
+        if (event.target.value) {
+            user.firstName = event.target.value;
+        } else {
+            user.firstName = '';
+        }
+        setUser(user);
+    } //setFirstName(event.target.value);
+    const handleLastName = (event) => {
+        if (event.target.value) {
+            user.lastName = event.target.value;
+        } else {
+            user.lastName = '';
+        }
+        setUser(user);
+    } //setLastName(event.target.value);
+    const handleEmail = (event) => {
+        if (event.target.value) {
+            user.email = event.target.value;
+        } else {
+            user.email = '';
+        }
+        setUser(user);
+    } //setEmail(event.target.value);
+    const handleCountry = (event) => {
+        if (event.target.value) {
+            user.country = event.target.value;
+        } else {
+            user.country = '';
+        }
+        setUser(user);
+    } //setCountry(event.target.value);
+    const handleZipCode = (event) => {
+        if (event.target.value) {
+            user.zipCode = event.target.value;
+        } else {
+            user.zipCode = '';
+        }
+        setUser(user);
+    } //setZipCode(event.target.value);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         if (validFields()){
             const userModel = {
-                id: props.user.id,
-                userName: userName,
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                country: country,
-                zipCode: zipCode,
-                telephone: props.user.telephone
+                id: currentUser.id,
+                userName: user.userName,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                country: user.country,
+                zipCode: user.zipCode,
+                telephone: currentUser.telephone
             }
             props.submitCallback(userModel);
         }
@@ -54,18 +75,23 @@ const UserForm = (props) => {
         }
     }
 
+    const cancelAction = (event) => {
+        event.preventDefault();
+        history.goBack();
+    }
+
     const validFields = () => {
-        return  (userName !== "" &&
-            firstName !== "" &&
-            lastName !== "" &&
-            country !== "" &&
-            zipCode !== "");
+        return  (user.userName !== "" &&
+            user.firstName !== "" &&
+            user.lastName !== "" &&
+            user.country !== "" &&
+            user.zipCode !== "");
     }
 
     return (
         <div className="container">
             <div className="py-5 text-center">
-                <h2>Registro de Usuarios</h2>
+                <h2>{nameForm}</h2>
             </div>
             <div className="col-md-8 order-md-1">
                 <form className="needs-validation" noValidate onSubmit={handleSubmit}>
@@ -79,6 +105,7 @@ const UserForm = (props) => {
                                 className="form-control"
                                 id="userName"
                                 placeholder="Usuario"
+                                defaultValue={currentUser.userName}
                                 onChange={handleUserName}
                                 required />
                             <div className="invalid-feedback">
@@ -94,6 +121,7 @@ const UserForm = (props) => {
                                 className="form-control"
                                 id="firstName"
                                 placeholder=""
+                                defaultValue={currentUser.firstName}
                                 onChange={handleFirstName}
                                 required/>
                             <div className="invalid-feedback">
@@ -106,6 +134,7 @@ const UserForm = (props) => {
                                 className="form-control"
                                 id="lastName"
                                 placeholder=""
+                                defaultValue={currentUser.lastName}
                                 onChange={handleLastName}
                                 required/>
                             <div className="invalid-feedback">
@@ -120,6 +149,7 @@ const UserForm = (props) => {
                             className="form-control"
                             id="email"
                             placeholder="you@example.com"
+                            defaultValue={currentUser.email}
                             onChange={handleEmail} />
                         <div className="invalid-feedback">
                             Por favor ingrese un email válido.
@@ -132,6 +162,7 @@ const UserForm = (props) => {
                             <select className="custom-select d-block w-100"
                                 id="country"
                                 onChange={handleCountry}
+                                defaultValue={currentUser.country}
                                 required>
                                     <option value="">Seleccione...</option>
                                     <option value="Perú">Perú</option>
@@ -150,6 +181,7 @@ const UserForm = (props) => {
                                 className="form-control"
                                 id="zipCode"
                                 placeholder=""
+                                defaultValue={currentUser.zipCode}
                                 onChange={handleZipCode}
                                 required/>
                             <div className="invalid-feedback">
@@ -161,7 +193,7 @@ const UserForm = (props) => {
                     <hr className="mb-4"/>
 
                     <button className="btn btn-primary mr-1" type="submit">Grabar</button>
-                    <button className="btn btn-secondary">Cancelar</button>
+                    <button className="btn btn-secondary" onClick={cancelAction}>Cancelar</button>
                 </form>
             </div>
         </div>

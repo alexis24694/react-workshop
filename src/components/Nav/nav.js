@@ -12,9 +12,6 @@ function Nav() {
 
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav mr-auto">
-          <Link to="/user-create" >
-            <li className="nav-link">Usuarios</li>
-          </Link>
           <Link to="/search" >
             <li className="nav-link">Búsqueda</li>
           </Link>

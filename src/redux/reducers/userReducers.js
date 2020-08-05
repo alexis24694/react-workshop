@@ -14,6 +14,7 @@ const UserReducers = (state = { users: [], user: {}, userResponse: {} }, action)
             };
         case USER_RESPONSE:
             return { ...state,
+                user: {},
                 userResponse: action.userResponse
             };
         default:

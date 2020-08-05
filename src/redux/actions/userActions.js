@@ -56,6 +56,12 @@ export const editUser = userModel => {
 
 export const removeUser = id => {
     return (dispatch) => {
-        dispatch(internalResponse(deleteUser(id)));
+        deleteUser(id).then(json => dispatch(internalResponse(json)));
+    }
+}
+
+export const cleanReponse = () => {
+    return (dispatch) => {
+        dispatch(internalResponse({}));
     }
 }

@@ -11,7 +11,6 @@ function ListGrid(props) {
                     <th>Nombre Usuario</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                    <th>Telefono</th>
                     <th>Correo</th>
                     <th></th>
                 </tr>

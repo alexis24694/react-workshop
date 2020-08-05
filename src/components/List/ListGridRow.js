@@ -13,7 +13,6 @@ function ListGridRow(props) {
           <td>{props.user.userName}</td>
           <td>{props.user.firstName}</td>
           <td>{props.user.lastName}</td>
-          <td>{props.user.telephone}</td>
           <td>{props.user.email}</td>
           <td>
             <span style={{marginLeft: "8px"}}>

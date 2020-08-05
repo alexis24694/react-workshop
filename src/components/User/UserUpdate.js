@@ -1,38 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {connect} from 'react-redux';
 import UserForm from './UserForm';
 import { useParams } from 'react-router-dom';
-import { getUser, editUser } from '../../redux/actions/userActions';
+import { getUser, editUser, cleanReponse } from '../../redux/actions/userActions';
 
 const UserUpdate = (props) => {
 
-    const { user, userResponse: response, getUser: getUserById, editUser: updateUser } = props
+    const { user, response, getUser: getUserById, editUser: updateUser, cleanReponse: erase } = props
     const params = useParams();
-
-    const [currentUser, setUser] = useState({});
+    const history = useHistory();
 
     useEffect(() => {
-        if (user) {
-            getUserById(params.id)
-        }
-        
-        setUser(user);
-        return () => setUser([]);
-    }, [user, getUserById, params.id]);
+        getUserById(params.id)
+    }, [getUserById, params.id]);
 
-    if (response) {
-        if (response.ok) {
-            alert("Usuario se actualizó exitosamente.");
+    useEffect(() => {
+        console.log(response);
+        if (response) {
+            if (response.ok) {
+                alert("Usuario se actualizó exitosamente.");
+                erase();
+                history.goBack();
+            }
         }
+    });
+    
+    const handleSubmitCallback = (userResponse) => {
+        console.log(userResponse);
+        updateUser(userResponse);
     }
 
-    const handleSubmitCallback = (userModel) => {
-        updateUser(userModel);
-    }
-
-    return (
-        currentUser ? <UserForm user={currentUser} submitCallback={handleSubmitCallback} /> : null
-    );
+    if (user.userName)
+        return (
+            <UserForm currentUser={user} submitCallback={handleSubmitCallback} nameForm="Editar Usuario"/>
+        );
+    return null;
 }
 
 const mapStateToProps = state => ({
@@ -40,4 +43,4 @@ const mapStateToProps = state => ({
     response: state.UserReducers.userResponse
 })
 
-export default connect(mapStateToProps, { getUser, editUser })(UserUpdate);
+export default connect(mapStateToProps, { getUser, editUser, cleanReponse })(UserUpdate);

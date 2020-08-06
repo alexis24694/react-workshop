@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ListGrid from './ListGrid';
-import './list.css';
+import './List.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { findUsers, removeUser, cleanReponse } from '../../redux/actions/userActions';
@@ -10,14 +10,14 @@ import { findUsers, removeUser, cleanReponse } from '../../redux/actions/userAct
 const List = (props) => {
     const { users, response, findUsers: search, removeUser: deleteUser, cleanReponse: erase } = props;
     const [text, setText] = useState("");
-	useEffect(() => {
-		if (response) {
-			if (response.ok) {
-				erase();
-				doSearchUsers();
-			}
-		}
-	})
+    useEffect(() => {
+      if (response) {
+        if (response.ok) {
+          erase();
+          doSearchUsers();
+        }
+      }
+    })
 
     const onChangeCriteria = (e) => {
       	setText(e.target.value);
@@ -47,7 +47,7 @@ const List = (props) => {
 
           <div className="mt-2 mb-6 py-4">
             <form className="form-inline mt-2 mt-md-0">
-              <input className="form-control mr-sm-2 col-10" type="text" placeholder="Buscar" aria-label="Buscar" onChange={onChangeCriteria}/>
+              <input className="form-control mr-sm-2 col-9" type="text" placeholder="Buscar" aria-label="Buscar" onChange={onChangeCriteria}/>
               <button className="btn btn-outline-secondary my-2 my-sm-0 ml-1" type="submit" onClick={handleSearch}>Buscar</button>
               <Link to='/user-create'><button className="btn btn-outline-primary my-2 my-sm-0 ml-1">Crear</button></Link>
             </form>

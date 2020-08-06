@@ -25,7 +25,7 @@ const UserUpdate = (props) => {
             }
         }
     });
-    
+
     const handleSubmitCallback = (userResponse) => {
         console.log(userResponse);
         updateUser(userResponse);

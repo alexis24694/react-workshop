@@ -27,7 +27,7 @@ const List = (props) => {
 		event.preventDefault();
 		doSearchUsers();
 	}
-	
+
     const doSearchUsers = () => {
 		search(text);
     }
@@ -42,7 +42,7 @@ const List = (props) => {
     return (
         <div className="container">
           <div className="py-4 text-center">
-              <h2>Listado con Búsqueda</h2>
+              <h2>Listado de Usuarios</h2>
           </div>
 
           <div className="mt-2 mb-6 py-4">

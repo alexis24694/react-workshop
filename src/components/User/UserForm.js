@@ -98,65 +98,40 @@ const UserForm = (props) => {
             <div className="col-md-8 order-md-1">
                 <form className="needs-validation" noValidate onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <CustomInput id="userName" label="Nombre de usuario" defaultValue={currentUser.userName} placeholder="Usuario" onChange={handleUserName} show_prepend="true"/>
-                        {/* <label htmlFor="userName">Nombre de usuario</label>
-                        <div className="input-group">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">@</span>
-                            </div>
-                            <input type="text"
-                                className="form-control"
-                                id="userName"
-                                placeholder="Usuario"
-                                defaultValue={currentUser.userName}
-                                onChange={handleUserName}
-                                required />
-                            <div className="invalid-feedback">
-                                Nombre de usuario es requerido.
-                            </div>
-                        </div> */}
+                        <CustomInput id="userName" 
+                            label="Nombre de usuario" 
+                            defaultValue={currentUser.userName} 
+                            placeholder="Usuario" 
+                            onChange={handleUserName} 
+                            show_prepend="true"/>
                     </div>
 
                     <div className="row">
                         <div className="col-md-6 mb-3">
-                            <label htmlFor="firstName">Nombres</label>
-                            <input type="text"
-                                className="form-control"
-                                id="firstName"
-                                placeholder=""
-                                defaultValue={currentUser.firstName}
+                            <CustomInput id="firstName" 
+                                label="Nombres" 
+                                defaultValue={currentUser.firstName} 
                                 onChange={handleFirstName}
-                                required/>
-                            <div className="invalid-feedback">
-                                Nombre es requerido.
-                            </div>
+                                isMandatory="true"
+                                validationMessage="Nombre es requerido."/>
                         </div>
                         <div className="col-md-6 mb-3">
-                            <label htmlFor="lastName">Apellidos</label>
-                            <input type="text"
-                                className="form-control"
-                                id="lastName"
-                                placeholder=""
-                                defaultValue={currentUser.lastName}
+                            <CustomInput id="lastName" 
+                                label="Apellidos" 
+                                defaultValue={currentUser.lastName} 
                                 onChange={handleLastName}
-                                required/>
-                            <div className="invalid-feedback">
-                                Apellido es requerido.
-                            </div>
+                                isMandatory="true"
+                                validationMessage="Apellido es requerido."/>
                         </div>
                     </div>
 
                     <div className="mb-3">
-                        <label htmlFor="email">Email <span className="text-muted">(Opcional)</span></label>
-                        <input type="email"
-                            className="form-control"
-                            id="email"
-                            placeholder="you@example.com"
-                            defaultValue={currentUser.email}
-                            onChange={handleEmail} />
-                        <div className="invalid-feedback">
-                            Por favor ingrese un email válido.
-                        </div>
+                        <CustomInput id="email" 
+                            isEmail="true"
+                            label="Email" 
+                            defaultValue={currentUser.email} 
+                            onChange={handleEmail}
+                            validationMessage="Por favor ingrese un email válido."/>
                     </div>
 
                     <div className="row">
@@ -179,17 +154,12 @@ const UserForm = (props) => {
                             </div>
                         </div>
                         <div className="col-md-6 mb-6">
-                            <label htmlFor="zipCode">Zip</label>
-                            <input type="text"
-                                className="form-control"
-                                id="zipCode"
-                                placeholder=""
-                                defaultValue={currentUser.zipCode}
+                            <CustomInput id="zipCode" 
+                                label="Zip" 
+                                defaultValue={currentUser.zipCode} 
                                 onChange={handleZipCode}
-                                required/>
-                            <div className="invalid-feedback">
-                                Zip code es requerido.
-                            </div>
+                                isMandatory="true"
+                                validationMessage="Zip code es requerido."/>
                         </div>
                     </div>
 

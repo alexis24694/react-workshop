@@ -9,7 +9,8 @@ function CustomInput(props){
     classStyle, 
     errorClassStyle, 
     placeholder, 
-    mandatory, 
+    isMandatory, 
+    isEmail,
     validationMessage, 
     show_prepend, 
     onChange
@@ -28,14 +29,14 @@ function CustomInput(props){
             <span className="input-group-text">@</span>
           </div>
         : null}
-        <input type="text"
-            className={`form-control ${classStyle}`}
+        <input type={isEmail==="true" ? "email" : "text"}
+            className={`form-control ${classStyle ? classStyle : ''}`}
             id={id}
             defaultValue={defaultValue}
             placeholder={placeholder ? placeholder : ""}
             onChange={changeHandler}
-            required={mandatory === 'true' ? true : false}/>
-        {mandatory === 'true' ?
+            required={isMandatory === 'true' ? true : false}/>
+        {isMandatory === 'true' ?
           <div className={`invalid-feedback ${errorClassStyle}`}>
               {validationMessage}.
           </div>

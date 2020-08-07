@@ -17,6 +17,15 @@ Usando las pantallas (imágenes en la carpeta screens -> Catalogo) proporcionada
 En este ejercicio, buscaremos un código simple, bien diseñado y eficaz.
 
 ## Detalles:
+La base de datos y los servicios que se usaran para el workshop están hosteados en el siguiente repositorio: https://cmarchenam@bitbucket.org/cmarchenam/mock-rest-api.git
+
+Los métodos estan mapeados en la carpeta 'services > CatalogueService.js'.
+Estos se describen a continuación:
+    - getAllProgramTypes: listado de todos los program types (para el ejercicio series, movie).
+    - getAllMovies: listado filtrado por programType = movie.
+    - getAllSeries: listado filtrado por programType = serie.
+
+
 Deberá crear las siguientes 3 páginas con React:
 
 Una página de "Catálogo", ver imágen catalogo.png.

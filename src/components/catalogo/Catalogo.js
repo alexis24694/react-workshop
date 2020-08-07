@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Catalogo = () => <p>Implementar Componente</p>;
+const Catalogo = () => <div className="mt-2">Implementar Componente</div>;
 
 export default Catalogo;

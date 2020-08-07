@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Nav from './components/nav/Nav';
-import UserCreate from './components/user/UserCreate';
-import UserUpdate from './components/user/UserUpdate';
-import List from './components/list/List';
+import Nav from './components/Nav/Nav';
+import UserCreate from './components/User/UserCreate';
+import UserUpdate from './components/User/UserUpdate';
+import List from './components/List/List';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {

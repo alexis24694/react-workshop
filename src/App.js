@@ -5,6 +5,7 @@ import UserCreate from './components/User/UserCreate';
 import UserUpdate from './components/User/UserUpdate';
 import List from './components/userlist/List';
 import Catalogo from './components/catalogo/Catalogo';
+import Peliculas from './components/pelicula/Peliculas';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route path="/catalogo">
               <Catalogo />
+            </Route>
+            <Route path="/peliculas">
+              <Peliculas />
             </Route>
             <Route path="/user-create" match >
                 <UserCreate />
